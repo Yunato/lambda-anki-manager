@@ -23,8 +23,15 @@ window.onload = () => {
     }else {
       if(data["FunctionError"] != null){
         console.log("No data");
-      }else{
-        console.log("Success");
+      }else if(data["Payload"] != null){
+        let json_data = JSON.parse(data["Payload"]);
+        console.log(json_data["Items"]);
+        let response = json_data["Items"];
+        for(let index = 0; index < response.length; ++index){
+          Object.keys(response[index]).forEach((key) => {
+            console.log(key + " " + response[index][key]);
+          })
+        }
       }
     }
   });
