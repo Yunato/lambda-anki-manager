@@ -14,7 +14,7 @@ def lambda_handler(event, context):
     primary_key = ''
     secondary_key = ''
     scan_response = table.scan()
-    scan_response['Items'] = sorted(scan_response['Items'], key=lambda x:x[secondary_key], reverse=True)
-    scan_response['Items'] = sorted(scan_response['Items'], key=lambda x:x[primary_key], reverse=True)
+    scan_response['Items'] = sorted(scan_response['Items'], key=lambda x:x[secondary_key], reverse=False)
+    scan_response['Items'] = sorted(scan_response['Items'], key=lambda x:x[primary_key], reverse=False)
     return scan_response
 

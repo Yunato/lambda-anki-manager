@@ -27,15 +27,15 @@
     <h1 class="title">Registration of Anki Card</h1>
 
     <form method="POST" enctype="application/x-www-form-urlencoded">
-      <label for="edit-question">Category1</label>
-      <input type="text">
-      <label for="edit-question">Category2</label>
-      <input type="text">
+      <label for="input-cat1">Category1</label>
+      <input id="input-cat1" type="text" value="test">
+      <label for="input-cat2">Category2</label>
+      <input id="input-cat2" type="text" value="test">
       <label for="edit-question">Question</label>
       <textarea id="edit-question" name="question" placeholder="Enter question statement．" row=10></textarea>
       <label for="edit-answer">Answer</label>
       <textarea id="edit-answer" name="answer" placeholder="Enter answer statement．" row=10></textarea>
-      <input onclick="sendCardInfo()" type="submit" value="Register">
+      <input onclick="sendCardInfo()" type="button" value="Register">
     </form>
   </div>
 
