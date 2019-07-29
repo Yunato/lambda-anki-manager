@@ -260,6 +260,15 @@ progress {
 
 textarea {
   overflow: auto;
+  display: block;
+  width: 500px;
+  height: 150px;
+  margin: 0 auto;
+  margin-bottom: 30px;
+}
+
+label {
+  display: block;
 }
 
 /**
