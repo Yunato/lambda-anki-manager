@@ -1,4 +1,5 @@
 import datetime
+import json
 import boto3
 import botocore.exceptions
 from boto3.session import Session
@@ -42,7 +43,6 @@ def lambda_handler(event, context):
             print("Error: Duplicate")
         else:
             raise
-    
-    scan_response = table.scan()
-    scan_response['Items'] = sorted(scan_response['Items'], key=lambda x:x[primary_key], reverse=True)
-    return scan_response
+
+    json_data = {'result':'200'}
+    return json.dumps(json_data)
