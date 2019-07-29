@@ -37,7 +37,7 @@ function sendCardInfo(){
   let ans = document.getElementById("edit-answer").value;
   if(cat1.replace(/\s/g, "") === "" || cat2.replace(/\s/g, "") === "" ||
       quest.replace(/\s/g, "") === "" || ans.replace(/\s/g, "") === ""){
-    alert("Caution: There is information that has not been entered.")
+    alert("Caution: There is information that has not been entered.");
     return false;
   }
   const sendObject = {
@@ -55,8 +55,12 @@ function sendCardInfo(){
     }else {
       if(data["FunctionError"] != null){
         console.log(data);
-      }else{
-        console.log("Success");
+      }else if(data["Payload"] != null){
+        let json_data = JSON.parse(data["Payload"]);
+        let response = JSON.parse(json_data);
+        if(response.result === "200"){
+          // alert("Success");
+        }
       }
     }
   });
