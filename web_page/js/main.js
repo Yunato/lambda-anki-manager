@@ -11,28 +11,6 @@ AWS.config.update({
 AWS.config.region = region_name;
 
 window.onload = () => {
-  // let xhr = new XMLHttpRequest();
-  // xhr.open("", "");
-  // xhr.setRequestHeader("x-api-key", "");
-  // xhr.send();
-  // xhr.onreadystatechange = () => {
-  //   if(xhr.readyState === 4){
-  //     console.log(xhr.responseText)
-  //   }
-  // }
-  // AWS.config.update({
-  //   accessKeyId : "",
-  //   secretAccessKey : ""
-  // });
-  // AWS.config.region = 'region_name';
-  // let lambda = new AWS.Lambda();
-  // lambda.invoke(null, (err, data) => {
-  //   if(err)
-  //     console.log(err, err,stack);
-  //   else
-  //     console.log(data);
-  // })
-
   let lambda = new AWS.Lambda();
   let params = {
     FunctionName : get_category_func_name,
@@ -51,21 +29,6 @@ window.onload = () => {
     }
   });
 };
-
-// $(document).ready(() => {
-//   'use strict';
-//   let gateWayURL = '';
-//   let APIKey = '';
-//   $.ajax({
-//     url: gateWayURL,
-//     type: 'GET',
-//     headers: {
-//       'x-api-key': APIKey
-//     }
-//   }).done((result) => {
-//     console.log(result)
-//   })
-// });
 
 function sendCardInfo(){
   let cat1 = document.getElementById("input-cat1").value;
