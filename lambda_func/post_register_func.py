@@ -1,5 +1,6 @@
 import datetime
 import boto3
+import botocore.exceptions
 from boto3.session import Session
 
 def lambda_handler(event, context):
@@ -24,11 +25,23 @@ def lambda_handler(event, context):
         }
     )
 
-    put_category_response = category_table.put_item(
-        Item = {
-            categories[0]: event[content_name[0]]
-        }
-    )
+    categories = []
+    try:
+        put_category_response = category_table.put_item(
+            Item = {
+                categories[0]: event[content_name[0]]
+            },
+            Expected = {
+                categories[0]: {
+                    "Exists": False
+                }
+            }
+        )
+    except botocore.exceptions.ClientError as e:
+        if e.response['Error']['Code'] == 'ConditionalCheckFailedException':
+            print("Error: Duplicate")
+        else:
+            raise
     
     scan_response = table.scan()
     scan_response['Items'] = sorted(scan_response['Items'], key=lambda x:x[primary_key], reverse=True)
