@@ -18,7 +18,7 @@ def lambda_handler(event, context):
 
     primary_key = ''
     content_name = []
-    stamp = int(datetime.datetime.now().timestamp())
+    stamp = int(datetime.datetime.now().replace(hour=0,minute=0,second=0,microsecond=0).timestamp())
     put_card_response = anki_table.put_item(
         Item = {
             primary_key: stamp
