@@ -4,7 +4,7 @@ from boto3.session import Session
 from boto3.dynamodb.conditions import Key, Attr
 
 def lambda_handler(event, context):
-    region = ""
+    region = "ap-northeast-1"
     session = Session(
             region_name=region
     )
@@ -24,5 +24,3 @@ def lambda_handler(event, context):
     sort_key = ''
     scan_response['Items'] = sorted(scan_response['Items'], key=lambda x:x[sort_key], reverse=False)
     return scan_response
-
-

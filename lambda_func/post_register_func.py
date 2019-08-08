@@ -5,9 +5,9 @@ import botocore.exceptions
 from boto3.session import Session
 
 def lambda_handler(event, context):
-    region = ""
+    region = "ap-northeast-1"
     session = Session(
-        regison_name=region
+        region_name=region
     )
     dynamodb = session.resource('dynamodb')
 
@@ -18,14 +18,16 @@ def lambda_handler(event, context):
 
     primary_key = ''
     content_name = []
-    stamp = int(datetime.datetime.now().replace(hour=0,minute=0,second=0,microsecond=0).timestamp())
+    stamp = int(datetime.datetime.now().timestamp())
+    one_day_interval = 24 * 60 * 60
+    next_stamp = int(datetime.datetime.now().replace(hour=0,minute=0,second=0,microsecond=0).timestamp()) + one_day_interval
     put_card_response = anki_table.put_item(
         Item = {
-            primary_key: stamp
+            primary_key: stamp,
             content_name[0]: event[content_name[0]]
         }
     )
-
+    
     categories = []
     try:
         put_category_response = category_table.put_item(
@@ -33,7 +35,7 @@ def lambda_handler(event, context):
                 categories[0]: event[content_name[0]]
             },
             Expected = {
-                categories[0]: {
+                categories[1]: {
                     "Exists": False
                 }
             }

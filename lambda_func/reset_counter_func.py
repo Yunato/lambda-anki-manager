@@ -6,7 +6,7 @@ from boto3.session import Session
 from boto3.dynamodb.conditions import Key, Attr
 
 def lambda_handler(event, context):
-    region = ""
+    region = "ap-northeast-1"
     session = Session(
         region_name=region
     )

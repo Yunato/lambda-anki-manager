@@ -17,4 +17,3 @@ def lambda_handler(event, context):
     scan_response['Items'] = sorted(scan_response['Items'], key=lambda x:x[secondary_key], reverse=False)
     scan_response['Items'] = sorted(scan_response['Items'], key=lambda x:x[primary_key], reverse=False)
     return scan_response
-
